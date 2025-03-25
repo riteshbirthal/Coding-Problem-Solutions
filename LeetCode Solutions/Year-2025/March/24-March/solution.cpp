@@ -12,4 +12,4 @@ class Solution {
             res += days - mx;
             return res;
         }
-};
+    };

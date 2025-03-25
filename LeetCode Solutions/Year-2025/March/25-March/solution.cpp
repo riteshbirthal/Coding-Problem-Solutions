@@ -5,13 +5,13 @@ class Solution {
                 return a[2]<b[2];
             return a[0]<b[0];
         }
-
+    
         static bool sortByY(vector<int>& a, vector<int>& b){
             if(a[1]==b[1])
                 return a[3]<b[3];
             return a[1]<b[1];
         }
-
+    
         bool checkValidCuts(int n, vector<vector<int>>& rectangles) {
             int siz = rectangles.size(), count = 0, mx;
             sort(rectangles.begin(), rectangles.end(), sortByX);
@@ -31,4 +31,4 @@ class Solution {
             }
             return count>1;;
         }
-};
+    };
