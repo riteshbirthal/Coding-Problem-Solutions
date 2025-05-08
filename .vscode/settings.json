@@ -20,6 +20,7 @@
         "valarray": "cpp",
         "bitset": "cpp",
         "*.tcc": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "tuple": "cpp"
     }
 }
