@@ -1,24 +1,23 @@
-// User function Template for C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
-  public:
-    // Function to find maximum product subarray
-    int maxProduct(vector<int> &arr) {
-        // Your Code Here
-        vector<int> left, right;
-        int product_left = 0, product_right = 0, n = arr.size(), ans;
-        for(int i = 0; i < n; i++){
-            product_left = product_left ? product_left : 1;
-            product_right = product_right ? product_right : 1;
-            product_left *= arr[i];
-            product_right *= arr[n-1-i];
-            left.push_back(product_left);
-            right.push_back(product_right);
-        }
-        reverse(right.begin(), right.end());
-        ans = left[0];
-        for(int i = 0; i < n-1; i++){
-            ans = max(ans, max(left[i], max(right[i+1], left[i]*right[i+1])));
-        }
-        return ans;
+public:
+    pair<bool, int> func(TreeNode* root){
+        if(root==NULL) return {true, 0};
+        pair<bool, int> left, right;
+        left = func(root->left), right = func(root->right);
+        return {left.first && right.first && abs(left.second-right.second)<2, 1 + max(left.second, right.second)};
+    }
+    bool isBalanced(TreeNode* root) {
+        return func(root).first;
     }
 };
